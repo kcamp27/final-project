@@ -1,0 +1,112 @@
+---
+title: "Examining the association between access to prenatal care and hypertensive disorders of pregnancy"
+author: Katie Campbell
+date: "`r Sys.Date()`"
+output: rmdformats::robobook
+---
+
+# Introduction
+The goal of this report will be to assess the relationship between financial access to healthcare services (insurance type), care-seeking during gestation (pre-natal care visits), and the occurrence of hypertensive disorders of pregnancy (HDPs). Additionally, this report will examine the role of structural racism as a an effect modifier to evaluate modification of the association between access and HDPs by race. This secondary analysis will be conducted to capture disparities that may exist in certain maternal outcomes.
+
+## Proposed Data Sources
+This report will use a population of women who gave birth in the United States in 2019, both at the individual-level and aggregated to the state-level.
+
+### CDC Wonder Live Births
+We will be using data from CDC Wonder live birth database to capture state-level birth counts, birth rates, as well as other characteristics of mothers and their child (Table 1.) These data will be used to examine geographic variation in characteristics associated with HDPs and the risk factors. Tigris shapefiles will be used to create figures and explore spatial relations by US census regions.
+
+### NVSS Natality Data
+Data for this report will also include the National Vital Statistics Public Use Live Birth. This data is made available from the National Center for Health Statistics on the CDC Data Access Portal. These data represent all live births at the individual level for 2019 and contain an identifier for HDPs and several other risk factors, such as maternal age, number of prenatal visits and insurance type.
+
+## Proposed Methods
+### Regression modeling 
+Logistic regression models will be used to address the relationship between the exposures (insurance status and number of prenatal visits) and outcome (defined as pre-pregnacy hypertension, gestational hypertension, ecclampsia). 
+
+### Tables and figures 
+For this report, tables will include descriptive statistics and results from the regression models. Data from CDC Wonder to create map graphics and examine state-level covariates, while NVSS data will be used for regression modeling. Figures may include relations between timing of care, number of visits, and insurance status. A graphical map will be included to show the birthrate in the US (figure 1). Analyses may also include variables from American Community Survey to examine place-based associations and build multi-level models. 
+
+
+# Building the report
+
+## R Setup 
+First, we will begin by establishing global settings for the R chunks. Using the pacman package, we will install the required packages to compile the report and complete the analysis.
+
+```{r, chunk-opts, include = FALSE, message = FALSE, warning = FALSE}
+
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+```{r, libraries}
+
+pacman::p_load(tidyverse,    # general data wrangling
+               tidycensus,   # importing Census attribute data into R
+               sf,           # Spatial data classes
+               tmap,         # Mapping/cartography
+               tigris,       # importing Census geography into R
+               dplyr,
+               readr,
+               tableone,
+               knitr)       
+
+```
+
+## Loading the data
+
+The data from NVSS do not include a variable for county or state of the live birth, so we will also include data from CDC Wonder to describe live birth rates across the US and tigris shapefiles to plot the covariates of interest. In the code below, *data* is the observations from NVSS documenting every live birth in 2019 in the US to women who identify as Black or White race. *us* is the shapefile needed to create the map of the US and *state* is live birth counts and rates by state, as well as average BMI, age, and population of each state. 
+
+
+```{r, data-load, echo = TRUE}
+
+us <- read_rds(here::here("data", "us_shp.rds"))
+state <- read_rds(here::here("data", "state.rds"))
+
+```
+
+## Table One
+
+This descriptive table will display regional averages of birth rate to get a global estimate for the US. Additional sample characteristics are displayed, including maternal age, birth weight, and others. These covariates are stratified by census region to provide a snapshot of the types of variables we will explore in this analysis and determine if there is any regional variation in risk factors. 
+
+```{r make-table, include=FALSE}
+# Make a list of variables to include in the table
+my_vars <- c("birthrate","avgage","avgbirthweight", "prepregbmi","pnvisits")
+
+#Use tableone package to make a descriptive dataframe
+tab <- CreateTableOne(vars = my_vars, data = state, strata = "Region")
+matrix <- print(tab, printToggle = FALSE, noSpaces = TRUE, test = FALSE)
+```
+
+```{r print-table}
+
+table_one <- readRDS(
+  file = here::here("output/table_one.rds")
+)
+
+table_one
+
+```
+
+
+
+This table shows that the Northeast census region has the lowest birth rate (`r matrix[2,2]`) and the highest number of pre-natal visits (`r matrix[6,2]`), on average. The South census region has the highest birth rate (`r matrix[2,3]`) and highest BMI on average (`r matrix[5,3]`). 
+
+## Map 
+
+The figure presented in this report is a map showing the variation in birth rate in the continental US. The darker colors represent the states that had the highest birth rate in 2019 and the lighter colors represent the lower birth rates. 
+
+```{r, map-creation}
+
+map_one <- readRDS(
+  file = here::here("output/map_one.rds")
+)
+
+map_one
+```
+
+
+This map highlights the states in the continental US with the highest birth rates, such as Texas, which is represented by the darkest purple color. Similar to what we see in *Table 1*, the Northeast has many states with the lighest off-white color, which represents the lowest birth rates. 
+
+
+
+

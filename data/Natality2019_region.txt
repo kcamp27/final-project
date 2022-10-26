@@ -1,0 +1,6 @@
+"Notes"	"Census Region of Residence"	"Census Region of Residence Code"	Births	Total Population	Birth Rate	% of Total Births	Average Age of Mother (years)	Average Birth Weight (grams)	Average Pre-pregnancy BMI	Average Number of Prenatal Visits
+	"Census Region 1: Northeast"	"CENS-R1"	597883	55982803	10.68	15.95%	30.24	3268.13	26.75	11.47
+	"Census Region 2: Midwest"	"CENS-R2"	784460	68329004	11.48	20.93%	28.84	3278.05	27.73	11.55
+	"Census Region 3: South"	"CENS-R3"	1478537	125580448	11.77	39.45%	28.49	3224.53	27.61	11.05
+	"Census Region 4: West"	"CENS-R4"	886660	78347268	11.32	23.66%	29.63	3273.72	26.92	11.42
+
