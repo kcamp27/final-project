@@ -10,9 +10,8 @@ library(dplyr)
 library(data.table)
 
 
-
 ## read in CDC Wonder natality data at the STATE level
-state <-read.table('data/natality2019_clean.txt', 
+state <-read.table('data/Natality2019_clean.txt', 
                             sep ='\t',
                             header = T, 
                             na.strings = c('Missing', 'Suppressed'), 
@@ -45,7 +44,7 @@ state <- state %>% left_join(ids, by = c("state"="State"))
 saveRDS(state, file = "output/state.rds")
 
 #read in cdc wonder natality data by REGION
-region <-read.table('data/natality2019_region.txt', 
+region <-read.table('data/Natality2019_region.txt', 
                    sep ='\t',
                    header = T, 
                    na.strings = c('Missing', 'Suppressed'), 

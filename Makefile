@@ -5,10 +5,10 @@ clean_data:
 	Rscript code/01_data_cleaning.R
 	
 table_one:
-	Rscript code/02_make_table.R
+	Rscript code/02_make_table.R output/us_shp.rds output/state.rds
 	
 figure_one:
-	Rscript code/03_make_figure.R	
+	Rscript code/03_make_figure.R	output/us_shp.rds output/state.rds
 
 
 .PHONY: clean
