@@ -1,7 +1,7 @@
 report.html: report.Rmd code/04_render_report.R clean_data table_one figure_one 
 	Rscript code/04_render_report.R
 
-clean_data:
+clean_data: code/01_data_cleaning.R
 	Rscript code/01_data_cleaning.R
 	
 table_one: output/us_shp.rds output/state.rds
