@@ -10,6 +10,9 @@ table_one: output/us_shp.rds output/state.rds
 figure_one: output/us_shp.rds output/state.rds
 	Rscript code/03_make_figure.R	
 
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt = FALSE)"
 
 .PHONY: clean
 clean:

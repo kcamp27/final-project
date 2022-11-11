@@ -41,6 +41,12 @@ For this report, tables will include descriptive statistics and results from the
 `report.Rmd`
 
   - Rmarkdown file that explains and displays table and figure
+  
+  
+## Makefile instructions
+
+`make install`
+- Synchronizes the package repository with the renv()
 
 ------------------------------------------------------------------------
 
