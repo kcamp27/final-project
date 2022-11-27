@@ -8,7 +8,9 @@ here::i_am(
 # load in required packages
 library(dplyr)
 library(data.table)
-
+library(tidycensus)
+library(sf)    
+library(tigris)  
 
 ## read in CDC Wonder natality data at the STATE level
 state <-read.table('data/Natality2019_clean.txt', 
@@ -59,17 +61,8 @@ region <- region %>% rename(totpopu = Total.Population,
                           pnvisits = Average.Number.of.Prenatal.Visits)
 
 
-
 #save data set of regional natality rates
 saveRDS(region, file = "output/region.rds")
-
-## Tigris Shapefile
-
-pacman::p_load(tidyverse,    # general data wrangling
-               tidycensus,   # importing Census attribute data into R
-               sf,           # Spatial data classes
-               tmap,         # Mapping/cartography
-               tigris)       # importing Census geography into R
 
 
 # setting options to 'cache' data can help speed up future downloads
@@ -84,5 +77,4 @@ us <- states(cb = TRUE, resolution = '5m',  # specify  a 'light weight' resoluti
 
 us <- us %>% filter(!(STATEFP %in% c("78", "72", "69", "66", "60")))                          
 saveRDS(us, file = "output/us_shp.rds")
-
 
