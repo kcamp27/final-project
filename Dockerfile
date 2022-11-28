@@ -25,4 +25,5 @@ COPY .Rprofile .Rprofile
 COPY renv/activate.R renv/activate.R
 COPY renv/settings.dcf renv/settings.dcf
 RUN Rscript -e "renv::restore(prompt = FALSE)"
-CMD make report.html
+RUN mkdir final_project
+CMD make && mv report.html final_report
