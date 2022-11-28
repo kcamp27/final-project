@@ -1,3 +1,4 @@
+library(here)
 here::i_am(
   "code/01_data_cleaning.R"
 )
@@ -10,7 +11,8 @@ library(dplyr)
 library(data.table)
 library(tidycensus)
 library(sf)    
-library(tigris)  
+library(tigris)
+
 
 ## read in CDC Wonder natality data at the STATE level
 state <-read.table('data/Natality2019_clean.txt', 
