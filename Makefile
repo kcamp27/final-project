@@ -13,8 +13,8 @@ figure_one: output/us_shp.rds output/state.rds
 run_analysis: data/nvss.rds
 	Rscript code/04_run_analysis.R
 
-#rule to build the report inside the container	***Ask David
-report.html: hdp
+#rule to build the report inside the container	
+final_report: hdp
 	docker run -v "/$$(pwd)":/project hdp
 
 .PHONY: install
