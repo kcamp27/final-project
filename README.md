@@ -68,7 +68,7 @@ For this report, a docker image is available on docker hub: https://hub.docker.c
 `make clean`
 - cleans the data files
 
-`make final_report`
+`make final_report/report.html`
 - runs the docker image `hdp` inside of docker container
 
 ------------------------------------------------------------------------

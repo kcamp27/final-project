@@ -24,16 +24,16 @@ clean:
 	rm -f output/*.rds && rm -f report.html
 
 # Project files
-PROJECTFILES = report.Rmd code/05_render_report.R clean_data table_one figure_one run_analysis 
-RENVFILES = renv.lock renv/activate.R renv/settings.dcf
+#PROJECTFILES = report.Rmd code/05_render_report.R clean_data table_one figure_one run_analysis 
+#RENVFILES = renv.lock renv/activate.R renv/settings.dcf
 	
 #rule to build project_image
-project_image: $(PROJECTFILES) $(RENVFILES) $(Dockerfile)
-	docker build -t project_image .
-	touch $@
+#project_image: $(PROJECTFILES) $(RENVFILES) $(Dockerfile)
+	#docker build -t project_image .
+	#touch $@
 
 #rule to run container	
-final_report/report.html: project_image
-	docker run -v "/$$(pwd)"/final_report:/project/final_report project_image
+final_report/report.html: 
+	docker run -v "/$$(pwd)"/final_report:/project/final_report kcamp27/hdp
 
 
