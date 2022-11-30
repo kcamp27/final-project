@@ -27,7 +27,7 @@ Data for this report will also include the National Vital Statistics Public Use 
 For this report, tables will include descriptive statistics and results from the regression models. Data from CDC Wonder to create map graphics and examine state-level covariates, while NVSS data will be used for regression modeling. Figures may include relations between timing of care, number of visits, and insurance status. A graphical map will be included to show the birthrate in the US (figure 1). Analyses may also include variables from American Community Survey to examine place-based associations and build multi-level models. 
 
 ### Docker Container
-For this report, a docker image is available on docker hub: https://hub.docker.com/repository/docker/kcamp27/hdp. To build the container, use `docker build -t hdp.` To run the container, use `docker run -it hdp bash`. In the container image, run `make final_report` to build the compiled final report and this will be saved within the project folder. 
+For this report, a docker image is available on docker hub: https://hub.docker.com/repository/docker/kcamp27/hdp. To build the container, use `docker build -t hdp.` To run the container, use `docker run -it hdp bash`. In the container image, run `make final_report/report.html` to build the compiled final report and this will be saved within the project folder. 
 
 ## Code description
 

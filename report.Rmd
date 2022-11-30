@@ -6,7 +6,7 @@ output: rmdformats::robobook
 ---
 
 # Introduction
-The goal of this report will be to assess the relationship between financial access to healthcare services (insurance type) and the occurrence of hypertensive disorders of pregnancy (HDPs). Additionally, this report will examine the role of structural racism as a an effect modifier to evaluate modification of the association between access and HDPs by race. This secondary analysis will be conducted to capture disparities that may exist in certain maternal outcomes.
+The goal of this report will be to assess the relationship between financial access to healthcare services (insurance type) and the occurrence of hypertensive disorders of pregnancy (HDPs). Additionally, this report will examine the role of structural racism as a an effect modifier to evaluate modification of the association between access and HDPs by race. 
 
 ## Proposed Data Sources
 This report will use a population of women who gave birth in the United States in 2019, both at the individual-level and aggregated to the state-level.
@@ -40,7 +40,7 @@ opts_chunk$set(
 
 ## Loading the data
 
-The data from NVSS do not include a variable for county or state of the live birth, so we will also include data from CDC Wonder to describe live birth rates across the US and tigris shapefiles to plot the covariates of interest. In the code below, *data* is the observations from NVSS documenting every live birth in 2019 in the US to women who identify as Black or White race. *us* is the shapefile needed to create the map of the US and *state* is live birth counts and rates by state, as well as average BMI, age, and population of each state. 
+The data from NVSS do not include a variable for county or state of the live birth, so we will also include data from CDC Wonder to describe live birth rates across the US and tigris shapefiles to plot the covariates of interest. In the code below, *nvss* is the observations from NVSS documenting every live birth in 2019 in the US to women who identify as Black or White race. *us* is the shapefile needed to create the map of the US and *state* is live birth counts and rates by state, as well as average BMI, age, and population of each state. 
 
 
 ```{r, data-load, echo = TRUE}
